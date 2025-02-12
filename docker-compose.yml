@@ -1,0 +1,35 @@
+services:
+  db:
+    container_name: interface_db
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: iot_interface
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./interface/data/migrations.sql:/docker-entrypoint-initdb.d/migrations.sql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    links:
+      - db
+  
+  iot_interface:
+    build: "interface/."
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - userdata:/root
+      - ./interface/IoT_Interface:/var/www/html
+    links:
+      - adminer
+      - db
+
+volumes:
+  userdata:
+  db_data:
