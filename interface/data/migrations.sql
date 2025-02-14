@@ -1,3 +1,4 @@
+use iot_interface;
 DROP TABLE IF EXISTS `auth`;
 CREATE TABLE `auth` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -42,7 +43,7 @@ CREATE TABLE `session` (
   PRIMARY KEY (`uid`,`token`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE EXISTS `devices`;
+DROP TABLE IF EXISTS `devices`;
 CREATE TABLE `devices` (
   `deviceno` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `devicename` varchar(255) NOT NULL,
