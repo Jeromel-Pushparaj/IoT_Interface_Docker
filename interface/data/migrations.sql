@@ -45,7 +45,8 @@ CREATE TABLE `session` (
 
 DROP TABLE IF EXISTS `devices`;
 CREATE TABLE `devices` (
-  `deviceno` INT NOT NULL AUTO_INCREMENT,
+  `deviceid` INT NOT NULL AUTO_INCREMENT,
+  `deviceno` INT NOT NULL,
   `devicename` VARCHAR(255) NOT NULL,
   `button` int NOT NULL DEFAULT '0',
   `slider` int NOT NULL DEFAULT '0',
@@ -54,6 +55,6 @@ CREATE TABLE `devices` (
   `timer` int NOT NULL DEFAULT '0',
   `desc` varchar(1025) NOT NULL,
   `id` INT NOT NULL, -- Foreign key linking to auth.id
-  PRIMARY KEY (`deviceno`),
+  PRIMARY KEY (`deviceid`),
   FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
