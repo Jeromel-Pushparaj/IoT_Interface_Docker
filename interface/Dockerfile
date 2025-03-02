@@ -16,6 +16,7 @@ RUN cp Iot_Interface.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
 #RUN rm /etc/apache/sites-available/000-default.conf
 RUN a2ensite Iot_Interface.conf
+RUN a2enmod rewrite
 VOLUME ["/var/www/html"]
 
 # docker run -p 8080:80 -v D:\playground\index.html:/var/www/html jeromelpushparaj/apache2:local
