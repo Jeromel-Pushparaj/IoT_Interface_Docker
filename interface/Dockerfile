@@ -8,11 +8,10 @@ RUN apt install nano git -y
 RUN apt install -y php libapache2-mod-php php-mysql
 
 RUN apt-get install -y certbot python3-certbot-apache apache2
-RUN certbot -d iotinterface.site -m jeromal03@gmail.com --agree-tos --apache --non-interactive
-RUN echo "0 0,12 * * * root /opt/certbot/bin/python -c 'import random; import time; time.sleep(random.random() * 3600)' && sudo certbot renew -q" | sudo tee -a /etc/crontab > /dev/null
 RUN rm -rf /var/www/html
 COPY ./data/ .
 RUN chmod +x /var/interface/main.sh
+RUN chmod +x /var/interface/certificate.sh
 RUN cp Iot_Interface.conf /etc/apache2/sites-available/
 RUN a2dissite 000-default.conf
 #RUN rm /etc/apache/sites-available/000-default.conf
