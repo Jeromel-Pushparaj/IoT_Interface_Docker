@@ -58,3 +58,14 @@ CREATE TABLE `devices` (
   PRIMARY KEY (`deviceid`),
   FOREIGN KEY (`id`) REFERENCES `auth` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `api_keys`;
+CREATE TABLE api_keys (
+    key_id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT NOT NULL,
+    `key` VARCHAR(255) NOT NULL UNIQUE,
+    status ENUM('active', 'inactive', 'revoked') DEFAULT 'active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_used TIMESTAMP NULL DEFAULT NULL,
+    FOREIGN KEY (id) REFERENCES auth(id) ON DELETE CASCADE
+);
