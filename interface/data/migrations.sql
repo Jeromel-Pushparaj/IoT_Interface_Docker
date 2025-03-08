@@ -69,3 +69,16 @@ CREATE TABLE api_keys (
     last_used TIMESTAMP NULL DEFAULT NULL,
     FOREIGN KEY (id) REFERENCES auth(id) ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS `device_keys`;
+
+CREATE TABLE device_keys (
+    dkey_id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT NOT NULL,
+    deviceid INT NOT NULL,
+    devicekey VARCHAR(255) UNIQUE NOT NULL,
+    createdat TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id) REFERENCES auth(id) ON DELETE CASCADE,
+    FOREIGN KEY (deviceid) REFERENCES devices(deviceid) ON DELETE CASCADE
+);
+
