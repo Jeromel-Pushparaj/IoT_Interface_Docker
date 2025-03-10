@@ -14,6 +14,8 @@ RUN echo "extension=mongodb.so" > /etc/php/8.3/apache2/conf.d/20-mongodb.ini
 RUN echo "extension=mongodb.so" > /etc/php/8.3/cli/conf.d/20-mongodb.ini
 
 RUN apt-get install -y certbot python3-certbot-apache apache2
+RUN apt install -y cron
+RUN service cron start
 RUN apt-get install curl
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN rm -rf /var/www/html
